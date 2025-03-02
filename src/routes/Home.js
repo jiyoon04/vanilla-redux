@@ -22,6 +22,12 @@ const Home = () => {
     dispatch(addToDo(text)); // 액션을 디스패치하여 상태 변경
   };
 
+  // X 버튼 클릭 시 ToDo 삭제
+  const btnOnClick = (event) => {
+    const targetId = event.target.parentNode.id;
+    dispatch({ type: "DELETE", id: targetId });
+  };
+
   // Redux에서 todos만 가져오기
   const todos = useSelector((state) => state.todos); // 'todos'만 가져오기
 
@@ -33,8 +39,11 @@ const Home = () => {
         <button onClick={onClick}>Add</button>
       </form>
       <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.text}</li> // todos 목록 출력
+        {todos.map((state) => (
+          <li key={state.id} id={state.id}>
+            {state.text}
+            <button onClick={btnOnClick}>X</button>
+          </li>
         ))}
       </ul>
     </>

@@ -23,6 +23,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    // 상태가 객체이고 그 안에 배열이 있어 return { ...state, todos: [...] } 와 같이 객체의 속성을 바꿔줘야 함
     case ADD: // 가장 첫번째 요소로 추가
       return {
         ...state,
